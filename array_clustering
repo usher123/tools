@@ -1,0 +1,35 @@
+import numpy as np
+import random
+
+def array_clustering(num_array):
+
+    if type(num_array) == list:
+        num_array.sort()
+    else:
+        raise Exception('num_array must be type of list')
+    print('get array: %s'%num_array)
+    max_num_element = []
+    max_num = max(num_array)
+    count_num = 0
+    num_var_all = np.var(num_array)  # 总体离散
+    avr_num_var_all = num_var_all / len(num_array)  # 平均离散
+
+    while num_array:
+        num_var = np.var(num_array)  # 当前总体离散
+        avr_num_var = num_var / len(num_array)  # 当前平均离散
+        if avr_num_var > max_num:
+            max_num_element.append(num_array.pop(num_array.index(max(num_array))))
+            continue
+
+        split_num_list = [x for x, y in zip(num_array, range(len(num_array))) if
+                          np.var(num_array[:y + 1]) <= avr_num_var_all]
+        if not split_num_list:
+            break
+        count_num += 1
+        print('第%s 类：%s' % (count_num, split_num_list))
+        num_array = num_array[len(split_num_list):]
+    if max_num_element:
+        print('max_num_element: %s' % max_num_element)
+
+if __name__ == '__main__':
+    array_clustering([random.randrange(1, 10000, ) for i in range(200)])
