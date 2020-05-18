@@ -91,13 +91,18 @@ def split_word(word, ori_limit_num = 20, item_word = None):
     '''
     if not item_word:
     #     # item_word = ('手游', '火影忍者', '火影忍者手游', '火影忍者疾风传', '风暴', '攻略', '下载', '疾风传', '究极忍者风暴', '游戏')
-    #     item_word = ('手游', '英雄联盟', '英雄联盟手游', 'lol', '皮肤', '攻略', '下载', '游戏')
-        item_word = ()
+    #     item_word = ('手游', '英雄联盟', '英雄联盟手游', 'lol', '皮肤', '攻略', '下载', '游戏', '英雄', 'lol')
+    #     item_word = ('steam', '游戏')
+        item_word = ('一人之下')
+        # item_word = ()
 
     return_single_word_list = []
     # num_letter = [x for x in re.findall(r'[\d.]+[日月年a-zA-Z]', word) if re.findall('\D+', x)] #抽离英文,英文+数字,日期
-    num_letter = [x for x in re.findall(r'[a-zA-Z]*[\d.]+[日月年a-zA-Z]?', word) if re.findall('\D+', x)] #抽离英文,英文+数字,日期
-    word = re.sub(r'[a-zA-Z]*[\d.]+[日月年a-zA-Z]?', '', word)  #清除英文,英文+数字,日期
+    num_letter = [x for x in re.findall(r'[a-zA-Z]*[\d.]+[日月年a-zA-Z]?', word) if re.findall('\D+', x)] #抽离英文+数字,日期
+    char_letter = [x for x in re.findall(r'[a-zA-Z]+', word) if re.findall('\D+', x)] #抽离英文
+
+    word = re.sub(r'[a-zA-Z]*[\d.]+[日月年a-zA-Z]?', '', word)  #清除英文+数字,日期
+    word = re.sub(r'[a-zA-Z]+', '', word)  #清除英文
     char_list = list(word)
     word_len = len(char_list)
     skip_num = -1
@@ -115,7 +120,9 @@ def split_word(word, ori_limit_num = 20, item_word = None):
                 skip_num = i+y
                 break
             return_single_word_list.append(new_word)
-    return_single_word_list += num_letter
+    add_list = [i for i in num_letter + char_letter if i not in item_word]
+    return_single_word_list += add_list
+    # return_single_word_list += char_letter
 
     # print(return_single_word_list)
     return return_single_word_list, list(set(return_single_word_list))
