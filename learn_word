@@ -22,6 +22,7 @@ def deal_main(word_input):
     all_title_num = len(word_input) #输入字段总数
     all_word_num = len(two_dict[0]) #总词数量 含重复
 
+
     g_word = kill_min_word(word_num_dict=dict(two_dict[0]))
     #g_word = two_dict[0]
 
@@ -74,7 +75,7 @@ def clear_word(*args):
 
     return return_list
 
-def split_word(word, ori_limit_num = 10):
+def split_word(word, ori_limit_num = 20, item_word = None):
     '''
     input: str
     deal: limit_num = 4   'abcdef' -> [ab,abc,abcd,
@@ -85,20 +86,35 @@ def split_word(word, ori_limit_num = 10):
     output:([ab,...,ef]含重复， [ab,....,ef]不含重复)
 
     拆分一个句子到charater级，再进行组合。含重复突显词频， 不含重复突显含该词的字段数。
+
+    item_word: 新增： 去除高频，交叉词汇
     '''
+    if not item_word:
+    #     # item_word = ('手游', '火影忍者', '火影忍者手游', '火影忍者疾风传', '风暴', '攻略', '下载', '疾风传', '究极忍者风暴', '游戏')
+    #     item_word = ('手游', '英雄联盟', '英雄联盟手游', 'lol', '皮肤', '攻略', '下载', '游戏')
+        item_word = ()
 
     return_single_word_list = []
-    num_letter = [x for x in re.findall(r'[\da-zA-Z.月日年]+', word) if re.findall('\D+', x)] #抽离英文和英文+数字
-    word = re.sub(r'[\d.日月年a-zA-Z ]+', '', word)  #清除英文和数字
+    # num_letter = [x for x in re.findall(r'[\d.]+[日月年a-zA-Z]', word) if re.findall('\D+', x)] #抽离英文,英文+数字,日期
+    num_letter = [x for x in re.findall(r'[a-zA-Z]*[\d.]+[日月年a-zA-Z]?', word) if re.findall('\D+', x)] #抽离英文,英文+数字,日期
+    word = re.sub(r'[a-zA-Z]*[\d.]+[日月年a-zA-Z]?', '', word)  #清除英文,英文+数字,日期
     char_list = list(word)
     word_len = len(char_list)
+    skip_num = -1
 
     for i in range(word_len):
+        if i <= skip_num:
+            continue
+        skip_num = -1
         limit_num = ori_limit_num if word_len - i >= ori_limit_num else word_len - i
-        for y in range(1, limit_num):
-            if i+y > word_len:
+        for y in range(limit_num-1, 0, -1): #倒排，剔除高频词汇后在进行组合
+            # if i+y > word_len:
+            #     continue
+            new_word = char_list[i] + ''.join(char_list[i+1:i+y+1])
+            if new_word in item_word:  #去除高频构造词
+                skip_num = i+y
                 break
-            return_single_word_list.append(char_list[i] + ''.join(char_list[i+1:i+y+1]))
+            return_single_word_list.append(new_word)
     return_single_word_list += num_letter
 
     # print(return_single_word_list)
@@ -116,10 +132,10 @@ def math_score(word_num, all_word_num, word_title_num, all_title_num):
     '''
 
     molecule = float('%0.4f' % (word_num / all_word_num))
-    # denominator = math.exp(float('%0.4f' % (word_title_num / all_title_num)))
-    denominator = math.log(float('%0.4f' % (all_title_num / (word_title_num + 1))))
+    denominator = math.exp(float('%0.4f' % (word_title_num / all_title_num)))
+    # denominator = math.log(float('%0.4f' % (all_title_num / (word_title_num + 1))))
     # return float('%0.4f' % ((molecule / denominator) *1000))
-    return float('%0.4f' % ((molecule * denominator) * 1000))
+    return float('%0.4f' % ((molecule * denominator * 1000) ))
 
 
 def counter_list(word_count_list, word_title_list):
