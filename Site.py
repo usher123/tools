@@ -6,7 +6,7 @@ def InitIsite(SiteNum, SitePerson):
     初始化
     :param SiteNum: 座位数
     :param SitePerson: 已坐人数
-    :return: 远离所有人最远的座位号
+    :return: 初始化座位， 已坐座位
     '''
     global InitSite
     InitSite = [i for i in range(1, SiteNum + 1)]  # 座位是数组的结构
