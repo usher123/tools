@@ -44,6 +44,7 @@ def ReturnSite(site):
         Cp_size = Cp_size[1:]
     if not ResultList:
         print("不存在远离所有人的位置")
+        return None
     return ResultList
 
 def CalSite(CanSite, HaveSite):
@@ -68,6 +69,8 @@ def MainSite(SiteNum, SitePerson):
     HaveSite = Init[-1]
     HaveSite.sort()
     CanSite = ReturnSite(site)
+    if not CanSite:
+        return
     print('可坐位置有：{}'.format(str(CanSite)[1:-1]))
     Result = CalSite(CanSite=CanSite,
                      HaveSite=HaveSite)
