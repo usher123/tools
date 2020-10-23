@@ -1,3 +1,4 @@
+import bisect
 def Place(func_):
     citylist = list(open('citycook.txt', 'r', encoding='utf-8').read().split('\n'))
     citydict = {i[:i.find('\t')]: int(i[i.rfind('\t'):]) for i in citylist}
