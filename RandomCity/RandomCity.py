@@ -1,6 +1,6 @@
 def Place(func_):
     '''print('{}, {}'.format(*Place()))'''
-    citylist = list(open('cicty', 'r', encoding='utf-8').read().split('\n'))[:-1]
+    citylist = list(open('citycook.txt', 'r', encoding='utf-8').read().split('\n'))
     citydict = {i[:i.find('\t')]: int(i[i.rfind('\t'):]) for i in citylist}
     city, weight = zip(*list(citydict.items()))
     sum_weight = 0
