@@ -42,7 +42,8 @@ class Rotate:
     """
     图像处理类
     """
-    def rotation(self,ImageBox: object, startangle: int, degree=45) -> None:
+    @staticmethod
+    def rotation(ImageBox: object, startangle: int, degree=45) -> List[List[int or List[int]]]:
         """
         旋转
         """
@@ -61,9 +62,23 @@ class Rotate:
                                     borderMode=cv2.BORDER_CONSTANT,  # 边界像素模式
                                     borderValue=(255,255,255))  # 边界填充值
         return rotatedImg
+    
+    @staticmethod
+    def show(IMG: List[List[int or List[int]]]) -> None:
+        """
+        图片展示
+        """
+        cv2.imshow("IMG", IMG)
+        cv2.resizeWindow("IMG", 860, 1280)
+        cv2.waitKey()
+        cv2.destroyAllWindows()
+    
+    
       
 if __name__ == "__main__":
-  imagepath = 'xxxxx'
-  angle = 45
-  rotatedImage = Rotate().rotation(ImageBox(imagepath), startangle=angle)
+    imagepath = 'xxxxx'
+    angle = 45
+    rotatedImage = Rotate.rotation(ImageBox(imagepath), startangle=angle)
+    Rotate.show(rotatedImage)
+    
 
