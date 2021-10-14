@@ -6,11 +6,11 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         if Solution.angle == 90:  # 顺时针旋转90 是先转置 再做左右镜像
-            self.rightleftImage(self.Transpose(matrix))
+            self.rightleftMatrix(self.Transpose(matrix))
         elif Solution.angle == 180:  # 顺时针旋转180 则是上下， 左右各做镜像
-            self.updownImage(self.rightleftImage(matrix))
+            self.updownMatrix(self.rightleftMatrix(matrix))
         elif Solution.angle == 270:  # 顺时针270度 则是先转置， 后做上下镜像
-            self.updownImage(self.Transpose(matrix))
+            self.updownMatrix(self.Transpose(matrix))
         else:
             matrix
 
@@ -23,7 +23,7 @@ class Solution:
                 matrix[i][x], matrix[x][i] = matrix[x][i], matrix[i][x]    
         return matrix
         
-    def updownImage(self, matrix: List[List[int]]) -> list:
+    def updownMatrix(self, matrix: List[List[int]]) -> list:
         """
         上下镜像
         """
@@ -31,7 +31,7 @@ class Solution:
             matrix[x], matrix[y] = matrix[y], matrix[x]
         return matrix
 
-    def rightleftImage(self, matrix: List[List[int]]) -> list:
+    def rightleftMatrix(self, matrix: List[List[int]]) -> list:
         """
         左右镜像
         """
