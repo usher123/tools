@@ -43,3 +43,12 @@
 基于拓展一，如果原图片已经对物体打标，进行旋转后，如何一起打标？
 * 代码实现在：rotate_image
 * 实现主要使用了opencv
+
+## 效果
+* 原图标记到旋转后：
+<img src="https://github.com/usher123/tools/blob/master/Leetcode/rotate_matrix/pic/1.png" height="400" width="400" align=left/>
+<img src="https://github.com/usher123/tools/blob/master/Leetcode/rotate_matrix/pic/3.png" height="400" width="400" align=right/>
+
+## 问题
+* 在非常规角度扩图后的矩形截图会包含其他物体进去， 后来发现先通过标记，直接旋转后在原图上是可以保留标记的 =。=， 突然觉得这个拓展二有点鸡肋了，当作学习吧，效果如下：
+<img src="https://github.com/usher123/tools/blob/master/Leetcode/rotate_matrix/pic/2.png" height="400" width="400" align=left/>
