@@ -1,28 +1,23 @@
+# Demo
+
 ```
-import RARY
-query = RARY.package()
+while True:
+    SiteNum = int(input('座位一共有:'))
+    SitePerson = int(input('已坐人数一共有:'))
+    MainSite(SiteNum=SiteNum,
+             SitePerson=SitePerson)
 
-****************************  demo  *************************************
-@query.createTask(model="daliy")
-def task_test():
-    print('test join')
-    time.sleep(1)
-    print('test close')
-    return '1'
 
-@query.createTask(model="daliy")
-async def task_test1(pl='task_test1'):
-    print('test1 join')
-    await asyncio.sleep(2)
-    print(pl)
-    print('test1 close')
-    return '2'
+>>> 座位一共有:10
+>>> 已坐人数一共有:4
+>>> 初始化的座位： [1, 0, 3, 4, 5, 0, 7, 0, 0, 10],  0为已坐
+>>> 可坐位置有：4
+>>> 离所有人最远的位置是: 4
 
-@query.createTask(model="daliy")
-async def task_test2():
-    print('test2 join')
-    await asyncio.sleep(1)
-    print('test2 close')
-    return '3'
+
+>>> 座位一共有:10
+>>> 已坐人数一共有:8
+>>> 初始化的座位： [0, 0, 0, 0, 0, 0, 7, 8, 0, 0],  0为已坐
+>>> 不存在远离所有人的位置
+
 ```
-
