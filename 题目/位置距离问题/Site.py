@@ -78,9 +78,4 @@ def MainSite(SiteNum, SitePerson):
         MaxNum = max(Result)
         print('离所有人最远的位置是: {}'.format(','.join([str(CanSite[i]) for i in [x for x, y in enumerate(Result) if y == MaxNum]])))
 
-if __name__ == '__main__':
-    while True:
-        SiteNum = int(input('座位一共有:'))
-        SitePerson = int(input('已坐人数一共有:'))
-        MainSite(SiteNum=SiteNum,
-                 SitePerson=SitePerson)
+
