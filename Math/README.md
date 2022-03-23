@@ -1,28 +1,4 @@
-```
-import RARY
-query = RARY.package()
-
-****************************  demo  *************************************
-@query.createTask(model="daliy")
-def task_test():
-    print('test join')
-    time.sleep(1)
-    print('test close')
-    return '1'
-
-@query.createTask(model="daliy")
-async def task_test1(pl='task_test1'):
-    print('test1 join')
-    await asyncio.sleep(2)
-    print(pl)
-    print('test1 close')
-    return '2'
-
-@query.createTask(model="daliy")
-async def task_test2():
-    print('test2 join')
-    await asyncio.sleep(1)
-    print('test2 close')
-    return '3'
-```
-
+Project     |  Fuction   |  Problem  | Progress
+----         |   -----------     |   -----------   |   ----------- 
+gaussian        |   高斯应用     |      |
+array_clustering    | 一维数组的聚类  |相比kmeans聚类，多维需要在每个维度上的聚类后，再合并（猜想），不同于kmeans，不需要分类个数的限制，缺点：精准分类需要多次迭代，迭代后的loss暂无计算.
