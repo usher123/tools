@@ -17,7 +17,3 @@ def Place(func_):
 @Place
 def Place_():
     return
-    
-if __name__ == '__main__':
-    for i in range(10):
-        print(Place_())
