@@ -24,5 +24,10 @@ async def task_test2():
     await asyncio.sleep(1)
     print('test2 close')
     return '3'
+    
+    
+    
+if __name__ == '__ main__':
+    RARY.run()
 ```
 
