@@ -1,12 +1,15 @@
 import re, math
 from collections import Counter
-from array_clustering import array_clustering
-from math_function import tanh
+import numpy as np
 
-with open("D:\\zp_magic_box\\work\\game_category\\cn_stopwords.txt", encoding='utf-8') as fr:
+
+with open("cn_stopwords.txt", encoding='utf-8') as fr:
     stop_words = set([word.strip() for word in fr])  # 停顿词的读取
     fr.close()
 
+def tanh(num):
+    return np.tanh(num) 
+    
 
 def deal_main(word_input):
     word_list = clear_word(word_input)
@@ -138,7 +141,6 @@ def split_word(word, ori_limit_num = 8, item_word = None):
                                        de,def,
                                        ef]
     output:([ab,...,ef]含重复， [ab,....,ef]不含重复)
-
     拆分一个句子到charater级，再进行组合。含重复突显词频， 不含重复突显含该词的字段数。
     ori_limit_num: 最大词汇长度
     item_word: 新增： 去除高频，交叉词汇
@@ -234,14 +236,8 @@ def merge_list_similar_word(word_list=None):
     :param word_list:[word1,word2,word3] --> 频繁词一般会被分为金字塔型[ab,abc,abcd,bcd,cd,bc]
     :return: 金字塔顶端字符[abcd,defg]
     '''
-    if not word_list:
-        test_a = ['魔兽世界9', '魔兽世界9.', '魔兽世界9.0', '兽世界9', '兽世界9.', '兽世界9.0', '世界9', '世界9.', '世界9.0', '界9', '界9.', '界9.0', '怎么', '攻略',
-         'lo', 'lol', 'ol', '公布', '王者荣耀鲁', '王者荣耀鲁班', '者荣耀鲁', '者荣耀鲁班', '荣耀鲁', '荣耀鲁班', '耀鲁', '耀鲁班', '鲁班', '等级', '等级上', '等级上限',
-         '级上', '级上限', '上限', '安其', '安其拉', '安其拉废', '安其拉废墟', '安其拉废墟三', '安其拉废墟三件', '安其拉废墟三件套', '其拉', '其拉废', '其拉废墟', '其拉废墟三',
-         '其拉废墟三件', '其拉废墟三件套', '拉废', '拉废墟', '拉废墟三', '拉废墟三件', '拉废墟三件套', '废墟', '废墟三', '废墟三件', '废墟三件套', '墟三', '墟三件', '墟三件套',
-         '三件', '三件套', '件套', '宇航', '宇航员', '航员', '新手', '王者', '王者荣', '王者荣耀', '者荣', '者荣耀', '荣耀']
-        test_b = ['总决赛', '联盟最', '王者', '选手', 'rng', '打野', 'ig', '无限', '装备', '符文', '联盟新', '英雄联盟中', '个英雄', '冠军', '玩法', '上单', '网友', '联盟中', '一个', '第一', '介绍', '更新', '战队', '的英雄', 'lpl', '出装', '攻略', '玩家', '英雄联盟手游', '版本', '技能', '什么', '联盟手游', '游戏', '怎么', 's', '皮肤', 'lol']
-        word_list = test_b
+    if  word_list is None:
+        word_list = []
     pyramid_dict = {}
     for i in word_list:
         for q in range(1, math.floor(len(i)/2)+1):
@@ -257,30 +253,3 @@ def merge_list_similar_word(word_list=None):
         if i not in pyramid_dict:
             pop_list.append(i)
     return pop_list
-
-
-
-if __name__ == '__main__':
-    a = [
-                '《魔兽世界》9.0等级上限是多少 新版本等级上限机制详解',
-                '魔兽世界安其拉废墟三件套怎么获得_安其拉废墟三件套获取攻略',
-                '魔兽世界:暴雪蓝贴意外透露进程!9.0前期开放时间或将提前!',
-                'LOL狗熊重做技能数值公布:满级大招能让防御塔失效6秒',
-                'LOL宇航员系列新皮肤公布:巴德、纳尔、波比宇航员皮肤预览',
-                '王者荣耀:鲁班皮肤哪个好?土豪选星空,大神却只用免费换的TA',
-                '王者荣耀:鲁班七号出装？',
-                '联动《和平精英》《王者荣耀》的背后,是小米游戏对渠道升级思考',
-                '魔兽世界9.0新手怎w9.0暗影国度新手入门攻略_3DM网游'
-                # '魔兽世界9.0新手0暗影国度_3DM网游',
-                # '魔兽世界9.0新手怎么玩.0暗影国度入门攻略_3DM网游',
-                # '魔兽世界9.0暗影国度_3DM网游'
-                  ]
-    # merge_list_similar_word()
-    import json
-    # with open('d:\\test2.txt', 'r') as f:
-    #     a = f.read()
-    #     f.close()
-    # a = a[1:-1].split(',')
-    # a.pop(a.index(' '))
-    deal_main(a)
-    # merge_list_similar_word()
