@@ -14,4 +14,4 @@ randomdate  |   随机生成阿拉伯数字与中文混合型的日期，简单�
 RandomCity|   权重随机二分查找中国市级及以上地区名，权重顺序首都-省级-省会城市-市级     |      |
 Leetcode|   Leetcode上遇到些有意思题目的代码编写     |      |
 gaussian_distribution|   按正态分布分配资源     |    不完善（小数影响导致，分配总和会不匹配）  |
-RARY |   仿照fastapi的使用方式，为简化协程任务编写的工具包     |      |
+RARY |   仿照fastapi的使用方式，而为简化协程任务的编写     |      |
