@@ -1,28 +1,4 @@
-```
-import RARY
-query = RARY.package()
-
-****************************  demo  *************************************
-@query.createTask(model="daliy")
-def task_test():
-    print('test join')
-    time.sleep(1)
-    print('test close')
-    return '1'
-
-@query.createTask(model="daliy")
-async def task_test1(pl='task_test1'):
-    print('test1 join')
-    await asyncio.sleep(2)
-    print(pl)
-    print('test1 close')
-    return '2'
-
-@query.createTask(model="daliy")
-async def task_test2():
-    print('test2 join')
-    await asyncio.sleep(1)
-    print('test2 close')
-    return '3'
-```
-
+Project     |  Fuction   |  Problem  | Progress
+----         |   -----------     |   -----------   |   ----------- 
+City |   权重随机二分查找中国市级及以上地区名，权重顺序首都-省级-省会城市-市级     |      |
+Time |   随机生成阿拉伯数字与中文混合型的日期，简单用于时间抽取的样本生成     |      |
