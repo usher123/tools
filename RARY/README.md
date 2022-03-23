@@ -27,7 +27,7 @@ async def task_test2():
     
     
     
-if __name__ == '__ main__':
+if __name__ == "__ main__":
     RARY.run()
 ```
 
