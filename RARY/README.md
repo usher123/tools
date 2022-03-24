@@ -1,6 +1,6 @@
 # 仿照fastapi的使用风格，来编写协程任务
 
-<img src="https://img.shields.io/badge/pyversions-3.7-blue.svg"/> <img src="https://img.shields.io/badge/release-V1.0.0-orange.svg"/> 
+<img src="https://img.shields.io/badge/python-3.7-blue.svg"/> <img src="https://img.shields.io/badge/release-V1.0.0-orange.svg"/> 
 
 ## Demo 
 ```
