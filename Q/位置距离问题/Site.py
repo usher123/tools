@@ -14,6 +14,7 @@ def InitIsite(SiteNum, SitePerson):
     HaveSite = random.sample(InitSite, SitePerson)
     [cc(x - 1) for x in HaveSite]
     print("初始化的座位： {},  0为已坐".format(InitSite))
+    
     return InitSite, HaveSite
 
 def ReturnSite(site):
@@ -24,21 +25,22 @@ def ReturnSite(site):
     ResultList = []
     recent = []
     num = 0
-    site = site+[0]
+    site = site + [0]
     Cp_size = copy.copy(site)
     while Cp_size:
-        if site[num]:
+        if site[num]: # 当前位置可坐
             recent.append(site[num])
-        elif not site[num] and recent:
-            if recent[0] == site[0]:
-                if len(recent) >= 2:
+        elif not site[num] and recent:  # 当前位置有人，且之前有可坐的位置
+            if recent[0] == site[0]:  # 从0号位开始
+                if len(recent) >= 2:   # 且连续可坐
                     ResultList.extend(recent[:-1])
-            elif recent[-1] == site[-2]:
-                if len(recent) >= 2:
-                    ResultList.extend(recent)
+            elif recent[-1] == site[-2]:  # 到达最后一个位置时
+                if len(recent) >= 2:  
+                    ResultList.extend(recent[1:])
             else:
-                if len(recent) >= 3:
+                if len(recent) >= 3:  # 中间连续时，去除离已坐距离为1的座位
                     ResultList.extend(recent[1:-1])
+                    
             recent = []
         num += 1
         Cp_size = Cp_size[1:]
@@ -72,10 +74,9 @@ def MainSite(SiteNum, SitePerson):
     if not CanSite:
         return
     print('可坐位置有：{}'.format(str(CanSite)[1:-1]))
+    
     Result = CalSite(CanSite=CanSite,
                      HaveSite=HaveSite)
     if Result:
         MaxNum = max(Result)
         print('离所有人最远的位置是: {}'.format(','.join([str(CanSite[i]) for i in [x for x, y in enumerate(Result) if y == MaxNum]])))
-
-
