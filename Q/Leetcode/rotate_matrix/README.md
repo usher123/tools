@@ -46,9 +46,9 @@
 
 ## 效果
 * 原图标记到旋转后：
-<img src="https://github.com/usher123/tools/blob/master/Leetcode/rotate_matrix/pic/1.png" height="460" width="500" align=left/>
-<img src="https://github.com/usher123/tools/blob/master/Leetcode/rotate_matrix/pic/3.png" height="678" width="678" align=right/>
+<img src="https://github.com/usher123/tools/tree/master/Q/Leetcode/rotate_matrix/pic/1.png" height="460" width="500" align=left/>
+<img src="https://github.com/usher123/tools/tree/master/Q/Leetcode/rotate_matrix/pic/3.png" height="678" width="678" align=right/>
 
 ## 问题
 * 在非常规角度扩图后的矩形截图会包含其他物体进去， 后来发现先通过标记，直接旋转后在原图上是可以保留标记的 =。=， 突然觉得这个拓展二有点鸡肋了，当作学习吧，效果如下：
-<img src="https://github.com/usher123/tools/blob/master/Leetcode/rotate_matrix/pic/2.png" height="678" width="678" align=left/>
+<img src="https://github.com/usher123/tools/tree/master/Q/Leetcode/rotate_matrix/pic/2.png" height="678" width="678" align=left/>
