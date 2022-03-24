@@ -1,4 +1,4 @@
-# 仿照fastapi的使用方式，来编写协程任务
+# 仿照fastapi的使用风格，来编写协程任务
 ## Demo 
 ```
 import time
