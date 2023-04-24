@@ -2,7 +2,7 @@
 各种分配方式
 
 - [mean_distribution](#均值分配)
-- [regulation_distribution](#调控均值分配)
+- [regulation_distribution](#调控分配)
 
 
 ---
