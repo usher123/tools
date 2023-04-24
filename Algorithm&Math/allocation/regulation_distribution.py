@@ -1,13 +1,14 @@
 import random
 import math
 
-def regMeanDistr(sun, pe, reg=4):
+def regDistr(sun, pe, reg=4):
     """
     优先分配前面, 通过reg限制每份资源分配上限
     sun 总分配额
     pe 分配个数
      """
     lk = []
+    reg = reg if sun - pe > reg else sun - pe - 1  # 调控初始reg, 否则会出现负数
     while pe > 1:
         if sun == pe:
             lk.append(1)
